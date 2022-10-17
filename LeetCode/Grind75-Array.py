@@ -56,3 +56,30 @@ def isValid(s: str) -> bool:
 # print(isValid("()[]{}"))
 # print(isValid("(]"))
 # print(isValid("{()"))
+
+# 3 Merge Two Sorted Lists
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+		
+def mergeTwoLists(l1: ListNode, l2: ListNode) -> ListNode:
+	if l1 is None:
+		return l2
+	elif l2 is None:
+		return l1
+	elif l1.val < l2.val:
+		l1.next = mergeTwoLists(l1.next, l2)
+		return l1
+	else:
+		l2.next = mergeTwoLists(l1,l2.next)
+		return l2
+
+# Test Case
+l1 = [1,2,4]
+l2 = [1,3,4]
+L1 = ListNode(l1,next=l1)
+L2 = ListNode(l2,next=l2)
+print(L2.val)
+print(mergeTwoLists(L1,L2).val)
